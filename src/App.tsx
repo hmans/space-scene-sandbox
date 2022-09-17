@@ -2,7 +2,8 @@ import {
   Environment,
   Loader,
   OrbitControls,
-  PerspectiveCamera
+  PerspectiveCamera,
+  useTexture
 } from "@react-three/drei"
 import { composable, Layer, modules } from "material-composer-r3f"
 import { Suspense } from "react"
@@ -36,6 +37,7 @@ export default function App() {
 
 const PostProcessing = () => {
   const { sun } = useStore(store)
+  const texture = useTexture("/textures/lensdirt.jpg")
 
   return (
     <RC.EffectPass>
@@ -46,6 +48,7 @@ const PostProcessing = () => {
         luminanceThreshold={0.8}
       />
       {sun && <RC.GodRaysEffect lightSource={sun} />}
+      <RC.LensDirtEffect texture={texture} />
     </RC.EffectPass>
   )
 }
@@ -72,7 +75,7 @@ const Scene = () => {
         layers-mask={bitmask(Layers.Default, Layers.TransparentFX)}
       />
 
-      <OrbitControls />
+      <OrbitControls autoRotate autoRotateSpeed={-0.3} />
       <PerspectiveCamera position={[0, 0, 75]} makeDefault />
 
       {/* The Planet */}
@@ -107,7 +110,7 @@ const Scene = () => {
           layers-mask={bitmask(Layers.Default, Layers.TransparentFX)}
         />
         <sphereGeometry args={[10]} />
-        <meshBasicMaterial color="white" />
+        <meshBasicMaterial color={new Color("white").multiplyScalar(30)} />
       </mesh>
     </group>
   )
