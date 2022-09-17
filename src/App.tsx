@@ -7,10 +7,12 @@ import {
 import { composable, Layer, modules } from "material-composer-r3f"
 import { Suspense } from "react"
 import * as RC from "render-composer"
-import { Fresnel } from "shader-composer"
+import { bitmask, Layers } from "render-composer"
+import { Fresnel, Vec3 } from "shader-composer"
 import { makeStore, useStore } from "statery"
 import { Color, Mesh } from "three"
 import { AsteroidBelt } from "./vfx/AsteroidBelt"
+import { Nebula } from "./vfx/Nebula"
 
 export const store = makeStore({
   sun: null as Mesh | null
@@ -66,13 +68,26 @@ const Scene = () => {
       />
 
       {/* Lights */}
-      <ambientLight intensity={0.05} />
+      <ambientLight
+        intensity={0.05}
+        layers-mask={bitmask(Layers.Default, Layers.TransparentFX)}
+      />
 
       <OrbitControls />
       <PerspectiveCamera position={[0, 0, 75]} makeDefault />
 
       {/* The Planet */}
-      <group rotation={[0.8, 0.5, -0.5]}>
+      <group position={[0, 0, 0]} rotation={[0.8, 0.2, -0.3]}>
+        <Nebula
+          dimensions={Vec3([40, 10, 40])}
+          amount={40}
+          opacity={0.2}
+          rotationSpeed={0.05}
+          maxSize={20}
+          minSize={10}
+          color={new Color("#fff").multiplyScalar(20)}
+        />
+
         <mesh scale={10}>
           <sphereGeometry args={[1, 32, 32]} />
 
@@ -87,8 +102,11 @@ const Scene = () => {
         <AsteroidBelt />
       </group>
 
-      <mesh ref={(sun) => store.set({ sun })} position={[80, 20, -100]}>
-        <directionalLight intensity={1.5} />
+      <mesh ref={(sun) => store.set({ sun })} position={[80, 15, -100]}>
+        <directionalLight
+          intensity={1.5}
+          layers-mask={bitmask(Layers.Default, Layers.TransparentFX)}
+        />
         <sphereGeometry args={[10]} />
         <meshBasicMaterial color="white" />
       </mesh>
