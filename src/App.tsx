@@ -22,8 +22,20 @@ export default function App() {
 const Scene = () => {
   return (
     <group>
-      <Environment preset="sunset" />
-      <Skybox />
+      <Environment
+        background="only"
+        files={[
+          "/textures/skybox/right.png",
+          "/textures/skybox/left.png",
+          "/textures/skybox/top.png",
+          "/textures/skybox/bottom.png",
+          "/textures/skybox/front.png",
+          "/textures/skybox/back.png"
+        ]}
+      />
+
+      <ambientLight intensity={0.1} />
+      <directionalLight position={[300, 10, -40]} intensity={0.5} />
 
       <mesh>
         <icosahedronGeometry />
@@ -33,25 +45,4 @@ const Scene = () => {
       <OrbitControls />
     </group>
   )
-}
-
-export const Skybox = () => {
-  const { scene } = useThree()
-
-  useEffect(() => {
-    const urls = [
-      "/textures/skybox/right.png",
-      "/textures/skybox/left.png",
-      "/textures/skybox/top.png",
-      "/textures/skybox/bottom.png",
-      "/textures/skybox/front.png",
-      "/textures/skybox/back.png"
-    ]
-
-    const cube = new CubeTextureLoader().load(urls)
-
-    scene.background = cube
-  }, [])
-
-  return null
 }
