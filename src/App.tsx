@@ -46,7 +46,6 @@ const PostProcessing = () => {
         luminanceThreshold={0.8}
       />
       {sun && <RC.GodRaysEffect lightSource={sun} />}
-      <RC.VignetteEffect />
     </RC.EffectPass>
   )
 }
