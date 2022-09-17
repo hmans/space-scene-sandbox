@@ -39,9 +39,9 @@ const PostProcessing = () => {
     <RC.EffectPass>
       <RC.SMAAEffect />
       <RC.SelectiveBloomEffect
-        intensity={5}
-        luminanceSmoothing={0.5}
-        luminanceThreshold={0.95}
+        intensity={3}
+        luminanceSmoothing={0.3}
+        luminanceThreshold={0.8}
       />
       {sun && <RC.GodRaysEffect lightSource={sun} />}
       <RC.VignetteEffect />
@@ -68,16 +68,18 @@ const Scene = () => {
       {/* Lights */}
       <ambientLight intensity={0.05} />
 
+      <OrbitControls />
+      <PerspectiveCamera position={[0, 0, 75]} makeDefault />
+
       {/* The Planet */}
-      <group rotation={[0.5, 0.5, -0.5]}>
-        <mesh scale={1}>
+      <group rotation={[0.8, 0.5, -0.5]}>
+        <mesh scale={10}>
           <sphereGeometry args={[1, 32, 32]} />
 
           <composable.meshStandardMaterial metalness={0.5} roughness={0.6}>
-            <modules.Color color={new Color("hotpink")} />
-
-            <Layer opacity={Fresnel({ intensity: 10 })}>
-              <modules.Color color={new Color("white").multiplyScalar(3)} />
+            <modules.Color color={new Color("#543")} />
+            <Layer opacity={Fresnel({ power: 3 })}>
+              <modules.Color color={new Color("white").multiplyScalar(2)} />
             </Layer>
           </composable.meshStandardMaterial>
         </mesh>
@@ -85,14 +87,11 @@ const Scene = () => {
         <AsteroidBelt />
       </group>
 
-      <mesh ref={(sun) => store.set({ sun })} position={[-80, 20, -100]}>
+      <mesh ref={(sun) => store.set({ sun })} position={[80, 20, -100]}>
         <directionalLight intensity={1.5} />
         <sphereGeometry args={[10]} />
         <meshBasicMaterial color="white" />
       </mesh>
-
-      <OrbitControls />
-      <PerspectiveCamera position={[0, 0, 100]} makeDefault />
     </group>
   )
 }
