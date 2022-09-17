@@ -4,10 +4,12 @@ import {
   OrbitControls,
   PerspectiveCamera
 } from "@react-three/drei"
+import { composable, Layer, modules } from "material-composer-r3f"
 import { Suspense } from "react"
 import * as RC from "render-composer"
+import { Fresnel } from "shader-composer"
 import { makeStore, useStore } from "statery"
-import { Mesh } from "three"
+import { Color, Mesh } from "three"
 import { AsteroidBelt } from "./vfx/AsteroidBelt"
 
 export const store = makeStore({
@@ -66,11 +68,24 @@ const Scene = () => {
       {/* Lights */}
       <ambientLight intensity={0.05} />
 
+      {/* The Planet */}
       <group rotation={[0.5, 0.5, -0.5]}>
+        <mesh scale={1}>
+          <sphereGeometry args={[1, 32, 32]} />
+
+          <composable.meshStandardMaterial metalness={0.5} roughness={0.6}>
+            <modules.Color color={new Color("hotpink")} />
+
+            <Layer opacity={Fresnel({ intensity: 10 })}>
+              <modules.Color color={new Color("white").multiplyScalar(3)} />
+            </Layer>
+          </composable.meshStandardMaterial>
+        </mesh>
+
         <AsteroidBelt />
       </group>
 
-      <mesh ref={(sun) => store.set({ sun })} position={[80, 20, -100]}>
+      <mesh ref={(sun) => store.set({ sun })} position={[-80, 20, -100]}>
         <directionalLight intensity={1.5} />
         <sphereGeometry args={[10]} />
         <meshBasicMaterial color="white" />
