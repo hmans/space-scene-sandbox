@@ -18,7 +18,6 @@ import {
 } from "shader-composer"
 import { Random } from "shader-composer-toybox"
 import { DoubleSide, Material, Mesh } from "three"
-import { InstanceSetupCallback } from "vfx-composer"
 import { Emitter, Particles } from "vfx-composer-r3f"
 
 export const AsteroidBelt = (props: GroupProps) => (
