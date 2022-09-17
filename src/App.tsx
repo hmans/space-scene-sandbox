@@ -1,9 +1,8 @@
-import { Loader } from "@react-three/drei"
+import { Environment, Loader, OrbitControls } from "@react-three/drei"
 import { Suspense } from "react"
 import * as RC from "render-composer"
-import { Scene } from "./Scene"
 
-function App() {
+export default function App() {
   return (
     <>
       <Loader />
@@ -18,4 +17,17 @@ function App() {
   )
 }
 
-export default App
+const Scene = () => {
+  return (
+    <group>
+      <Environment preset="sunset" />
+
+      <mesh>
+        <icosahedronGeometry />
+        <meshStandardMaterial color="red" />
+      </mesh>
+
+      <OrbitControls />
+    </group>
+  )
+}
