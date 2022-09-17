@@ -29,6 +29,7 @@
     "render-composer": "^0.2.1",
     "shader-composer": "^0.4.2",
     "shader-composer-r3f": "^0.4.0",
+    "statery": "^0.6.2",
     "three": "^0.144.0",
     "typescript": "^4.8.3",
     "vfx-composer": "^0.2.4",

@@ -1,7 +1,13 @@
 import { Environment, Loader, OrbitControls } from "@react-three/drei"
 import { Suspense } from "react"
 import * as RC from "render-composer"
+import { makeStore, useStore } from "statery"
+import { Mesh } from "three"
 import { AsteroidBelt } from "./vfx/AsteroidBelt"
+
+export const store = makeStore({
+  sun: null as Mesh | null
+})
 
 export default function App() {
   return (
@@ -20,6 +26,8 @@ export default function App() {
 }
 
 const PostProcessing = () => {
+  const { sun } = useStore(store)
+
   return (
     <RC.EffectPass>
       <RC.SMAAEffect />
@@ -28,6 +36,7 @@ const PostProcessing = () => {
         luminanceSmoothing={0.5}
         luminanceThreshold={0.95}
       />
+      {sun && <RC.GodRaysEffect lightSource={sun} />}
       <RC.VignetteEffect />
     </RC.EffectPass>
   )
@@ -55,9 +64,9 @@ const Scene = () => {
 
       <AsteroidBelt />
 
-      <mesh>
-        <icosahedronGeometry />
-        <meshStandardMaterial color="red" />
+      <mesh ref={(sun) => store.set({ sun })}>
+        <sphereGeometry args={[20]} />
+        <meshBasicMaterial color="white" />
       </mesh>
 
       <OrbitControls />
