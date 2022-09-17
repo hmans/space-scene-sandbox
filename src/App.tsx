@@ -64,12 +64,14 @@ const Scene = () => {
       />
 
       {/* Lights */}
-      <ambientLight intensity={0.1} />
-      <directionalLight position={[300, 10, -40]} intensity={0.5} />
+      <ambientLight intensity={0.05} />
 
-      <AsteroidBelt />
+      <group rotation={[0.5, 0.5, -0.5]}>
+        <AsteroidBelt />
+      </group>
 
-      <mesh ref={(sun) => store.set({ sun })}>
+      <mesh ref={(sun) => store.set({ sun })} position={[80, 20, -100]}>
+        <directionalLight intensity={1.5} />
         <sphereGeometry args={[10]} />
         <meshBasicMaterial color="white" />
       </mesh>

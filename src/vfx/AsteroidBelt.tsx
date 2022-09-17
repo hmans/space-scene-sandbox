@@ -36,7 +36,7 @@ const SmallAsteroids = ({ amount = 10_000 }: { amount?: number }) => {
     <Particles capacity={amount}>
       <planeGeometry />
 
-      <composable.meshStandardMaterial side={DoubleSide} color="#000">
+      <composable.meshStandardMaterial side={DoubleSide} color="#333">
         <modules.Scale scale={ScaleAndOffset(random(0.1), 0.1, 0.01)} />
         <BeltModules height={12} />
       </composable.meshStandardMaterial>
