@@ -1,4 +1,9 @@
-import { Environment, Loader, OrbitControls } from "@react-three/drei"
+import {
+  Environment,
+  Loader,
+  OrbitControls,
+  PerspectiveCamera
+} from "@react-three/drei"
 import { Suspense } from "react"
 import * as RC from "render-composer"
 import { makeStore, useStore } from "statery"
@@ -65,11 +70,12 @@ const Scene = () => {
       <AsteroidBelt />
 
       <mesh ref={(sun) => store.set({ sun })}>
-        <sphereGeometry args={[20]} />
+        <sphereGeometry args={[10]} />
         <meshBasicMaterial color="white" />
       </mesh>
 
       <OrbitControls />
+      <PerspectiveCamera position={[0, 0, 100]} makeDefault />
     </group>
   )
 }
