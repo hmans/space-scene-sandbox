@@ -2,6 +2,14 @@
   "name": "asteroid-ring-sandbox",
   "version": "0.1.0",
   "private": true,
+  "prettier": {
+    "trailingComma": "none",
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": false,
+    "singleQuote": false,
+    "arrowParens": "always"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
