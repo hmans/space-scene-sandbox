@@ -1,6 +1,7 @@
 import { Environment, Loader, OrbitControls } from "@react-three/drei"
 import { Suspense } from "react"
 import * as RC from "render-composer"
+import { AsteroidBelt } from "./vfx/AsteroidBelt"
 
 export default function App() {
   return (
@@ -51,6 +52,8 @@ const Scene = () => {
       {/* Lights */}
       <ambientLight intensity={0.1} />
       <directionalLight position={[300, 10, -40]} intensity={0.5} />
+
+      <AsteroidBelt />
 
       <mesh>
         <icosahedronGeometry />
