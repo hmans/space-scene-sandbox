@@ -33,7 +33,7 @@ export const Scene = () => {
         layers-mask={bitmask(Layers.Default, Layers.TransparentFX)}
       />
 
-      <OrbitControls autoRotate autoRotateSpeed={-0.3} />
+      <OrbitControls />
       <PerspectiveCamera position={[0, 0, 75]} makeDefault />
 
       {/* The Planet */}
