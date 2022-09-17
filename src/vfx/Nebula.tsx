@@ -42,7 +42,9 @@ export const Nebula = ({
 }: NebulaProps) => {
   const texture = useTexture("/textures/smoke.png")
 
-  const depth = useUniformUnit("sampler2D", useRenderPipeline().depth)
+  const { depth } = useRenderPipeline()
+
+  const u_depth = useUniformUnit("sampler2D", depth)
 
   const InstanceRandom = (offset: Input<"float">) =>
     Random(Add(Mul(Float(InstanceID), 1.23), offset))
@@ -91,10 +93,12 @@ export const Nebula = ({
             space="local"
           />
 
+          {/* Color and alpha */}
           <modules.Color color={(c) => Mul(c, color)} />
           <modules.Alpha alpha={(a) => Mul(a, opacity)} />
 
-          <modules.Softness softness={5} depthTexture={depth} />
+          {/* Soft particles */}
+          <modules.Softness softness={5} depthTexture={u_depth} />
         </composable.meshStandardMaterial>
 
         <Emitter limit={amount} rate={Infinity} />
