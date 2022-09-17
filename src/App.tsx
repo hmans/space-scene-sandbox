@@ -1,8 +1,6 @@
 import { Environment, Loader, OrbitControls } from "@react-three/drei"
-import { useThree } from "@react-three/fiber"
-import { Suspense, useEffect } from "react"
+import { Suspense } from "react"
 import * as RC from "render-composer"
-import { CubeTextureLoader } from "three"
 
 export default function App() {
   return (
