@@ -1,10 +1,11 @@
+import { MeshProps } from "@react-three/fiber"
 import { bitmask, Layers } from "render-composer"
 import { Color } from "three"
 import { store } from "./state"
 
-export const Sun = () => {
+export const Sun = (props: MeshProps) => {
   return (
-    <mesh ref={(sun) => store.set({ sun })} position={[80, 15, -100]}>
+    <mesh ref={(sun) => store.set({ sun })} {...props}>
       <directionalLight
         intensity={1.5}
         layers-mask={bitmask(Layers.Default, Layers.TransparentFX)}

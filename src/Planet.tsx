@@ -1,12 +1,13 @@
+import { GroupProps } from "@react-three/fiber"
 import { composable, Layer, modules } from "material-composer-r3f"
 import { Fresnel, Vec3 } from "shader-composer"
 import { Color } from "three"
 import { AsteroidBelt } from "./vfx/AsteroidBelt"
 import { Nebula } from "./vfx/Nebula"
 
-export const Planet = () => {
+export const Planet = (props: GroupProps) => {
   return (
-    <group position={[0, 0, 0]} rotation={[0.8, 0.2, -0.3]}>
+    <group {...props}>
       {/* Some funky clouds! */}
       <Nebula
         dimensions={Vec3([40, 10, 40])}

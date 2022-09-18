@@ -32,8 +32,8 @@ export const Scene = () => {
       <OrbitControls />
       <PerspectiveCamera position={[0, 0, 75]} makeDefault />
 
-      <Planet />
-      <Sun />
+      <Planet rotation={[0.8, 0.2, -0.3]} />
+      <Sun position={[80, 15, -100]} />
     </group>
   )
 }
