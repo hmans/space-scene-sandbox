@@ -10,6 +10,12 @@ import { Sun } from "./Sun"
 export const Scene = () => {
   return (
     <group>
+      <Planet position={[-10, 0, 0]} rotation={[0.5, 0.2, -0.3]} />
+      <Sun position={[80, 15, -100]} />
+
+      <OrbitControls />
+      <PerspectiveCamera position={[0, 0, 50]} makeDefault />
+
       {/* Environment */}
       <Environment
         background="only"
@@ -28,12 +34,6 @@ export const Scene = () => {
         intensity={0.05}
         layers-mask={bitmask(Layers.Default, Layers.TransparentFX)}
       />
-
-      <OrbitControls />
-      <PerspectiveCamera position={[0, 0, 75]} makeDefault />
-
-      <Planet rotation={[0.8, 0.2, -0.3]} />
-      <Sun position={[80, 15, -100]} />
     </group>
   )
 }

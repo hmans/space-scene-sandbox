@@ -8,20 +8,6 @@ import { Nebula } from "./vfx/Nebula"
 export const Planet = (props: GroupProps) => {
   return (
     <group {...props}>
-      {/* Some funky clouds! */}
-      <Nebula
-        dimensions={Vec3([40, 10, 40])}
-        amount={60}
-        opacity={0.4}
-        rotationSpeed={0.05}
-        minSize={10}
-        maxSize={20}
-        color={new Color("#fff").multiplyScalar(15)}
-      />
-
-      {/* The asteroid belt. */}
-      <AsteroidBelt />
-
       {/* The actual planet */}
       <mesh scale={10}>
         <sphereGeometry args={[1, 32, 32]} />
@@ -36,6 +22,20 @@ export const Planet = (props: GroupProps) => {
           </Layer>
         </composable.meshStandardMaterial>
       </mesh>
+
+      {/* Some funky clouds! */}
+      <Nebula
+        dimensions={Vec3([40, 10, 40])}
+        amount={60}
+        opacity={0.4}
+        rotationSpeed={0.05}
+        minSize={10}
+        maxSize={20}
+        color={new Color("#fff").multiplyScalar(15)}
+      />
+
+      {/* The asteroid belt. */}
+      <AsteroidBelt />
     </group>
   )
 }

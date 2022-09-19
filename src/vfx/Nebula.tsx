@@ -53,6 +53,7 @@ export const Nebula = ({
     <group {...props}>
       <Particles layers-mask={bitmask(Layers.TransparentFX)} capacity={amount}>
         <planeGeometry />
+
         <composable.meshStandardMaterial
           map={texture}
           transparent
