@@ -8,6 +8,13 @@ export default function App() {
   return (
     <>
       <Loader />
+      <div id="logo">
+        <strong>
+          <a href="https://github.com/hmans/composer-suite">
+            THE COMPOSER SUITE
+          </a>
+        </strong>
+      </div>
       <RC.Canvas dpr={1}>
         <RC.RenderPipeline>
           <Suspense>
