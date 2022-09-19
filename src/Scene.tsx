@@ -14,7 +14,7 @@ export const Scene = () => {
       <Sun position={[80, 15, -100]} />
 
       <OrbitControls />
-      <PerspectiveCamera position={[0, 0, 50]} makeDefault />
+      <PerspectiveCamera position={[0, 0, 62]} makeDefault />
 
       {/* Environment */}
       <Environment
