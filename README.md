@@ -12,7 +12,7 @@ The running demo can be seen here in all its glory:
 
 - https://space-scene-sandbox.vercel.app/
 
-If you want to hack around in the code and instantly see the results, you can launch it in one of the many code sandbox services out there:
+If you want to hack around in the code and instantly see the results, you can launch it in one of the many code sandbox services out there. Please note that these can be a little finicky, with one often working better than the others at any given time. Give it a try:
 
 - [Open in StackBlitz](https://stackblitz.com/github/hmans/space-scene-sandbox)
 - [Open in CodeSandbox](https://codesandbox.io/s/github/hmans/space-scene-sandbox)
